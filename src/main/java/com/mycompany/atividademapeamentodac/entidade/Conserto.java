@@ -5,17 +5,32 @@
  */
 package com.mycompany.atividademapeamentodac.entidade;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author kaique
  */
-public class Conserto {
-    
+@Entity
+public class Conserto implements Serializable {
+
+    @Id @GeneratedValue
+    private Integer id;
     private double valor;
+    @Temporal(TemporalType.DATE)
+    @Convert(converter = Converte.class)
     private LocalDate dataServico;
     
+    @ManyToOne(cascade = CascadeType.ALL)
     private Funcionario funcionario;
 
     public Conserto() {
@@ -55,7 +70,5 @@ public class Conserto {
     public String toString() {
         return "Conserto{" + "valor=" + valor + ", dataServico=" + dataServico + ", funcionario=" + funcionario + '}';
     }
-    
-    
-    
+
 }

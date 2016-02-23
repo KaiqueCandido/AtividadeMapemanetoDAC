@@ -8,6 +8,7 @@ package com.mycompany.atividademapeamentodac.entidade;
 import com.mycompany.atividademapeamentodac.enun.Funcao;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -18,6 +19,7 @@ import javax.persistence.Id;
 public class Funcionario implements Serializable {
 
     @Id
+    @GeneratedValue
     private Integer id;
     private String nome;
     private String cpf;
@@ -28,8 +30,7 @@ public class Funcionario implements Serializable {
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, String nome, String cpf, String rg, float salario, Funcao funcao) {
-        this.id = id;
+    public Funcionario(String nome, String cpf, String rg, float salario, Funcao funcao) {        
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;

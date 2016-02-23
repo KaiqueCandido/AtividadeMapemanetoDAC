@@ -5,8 +5,11 @@
  */
 package com.mycompany.atividademapeamentodac.entidade;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -15,22 +18,23 @@ import javax.persistence.OneToMany;
  * @author kaique
  */
 @Entity
-public class Oficina {
-    
+public class Oficina implements Serializable {
+
     @Id
-    private int id;
+    @GeneratedValue
+    private Integer id;
     private String rua, bairro, cidade;
     private double saldo;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Funcionario> funcionarios;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Conserto> consertos;
-    
+
     public Oficina() {
     }
 
-    public Oficina(int id, String rua, String bairro, String cidade, double saldo, List<Funcionario> funcionarios, List<Conserto> consertos) {
+    public Oficina(Integer id, String rua, String bairro, String cidade, double saldo, List<Funcionario> funcionarios, List<Conserto> consertos) {
         this.id = id;
         this.rua = rua;
         this.bairro = bairro;
@@ -40,11 +44,11 @@ public class Oficina {
         this.consertos = consertos;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -95,14 +99,18 @@ public class Oficina {
     public void setConsertos(List<Conserto> consertos) {
         this.consertos = consertos;
     }
-    
+
+    public void addFuncionario(Funcionario f) {
+        this.funcionarios.add(f);
+    }
+
+    public void addConserto(Conserto c) {
+        this.consertos.add(c);
+    }
 
     @Override
     public String toString() {
         return "Oficina{" + "id=" + id + ", rua=" + rua + ", bairro=" + bairro + ", cidade=" + cidade + ", saldo=" + saldo + ", funcionarios=" + funcionarios + ", consertos=" + consertos + '}';
     }
-    
-    
-    
-     
+
 }

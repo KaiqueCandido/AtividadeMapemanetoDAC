@@ -15,22 +15,23 @@ import javax.persistence.Persistence;
  * @author kaique
  */
 public class ConsertoDAO {
-    
+
     EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistence");
     EntityManager em = factory.createEntityManager();
-    
+
     public void addConserto(Conserto c) {
         em.getTransaction().begin();
         em.persist(c);
         em.getTransaction().commit();
         em.close();
     }
-    
+
     public void removeConserto(Conserto c) {
         em.getTransaction().begin();
-        em.remove(c);
+
+        em.remove(em.find(Conserto.class, 101));
         em.getTransaction().commit();
         em.close();
     }
-    
+
 }
