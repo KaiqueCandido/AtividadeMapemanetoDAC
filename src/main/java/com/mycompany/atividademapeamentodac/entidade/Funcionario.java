@@ -6,6 +6,7 @@
 package com.mycompany.atividademapeamentodac.entidade;
 
 import com.mycompany.atividademapeamentodac.enun.Funcao;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -14,7 +15,7 @@ import javax.persistence.Id;
  * @author kaique
  */
 @Entity
-public class Funcionario {
+public class Funcionario implements Serializable {
 
     @Id
     private Integer id;
